@@ -1,4 +1,5 @@
-﻿using BSSApp.Repository;
+﻿using BSSApp.Data.Entity;
+using BSSApp.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,18 @@ namespace BSSApp.Controllers
         public AccountController(IAccountRepository accountRepository)
         {
             this.accountRepository = accountRepository;
+        }
+
+        [HttpPost("registration")]
+        public async Task<IActionResult> Registration([FromBody] Registration registration)
+        {
+            var result = await accountRepository.RegisterAsync(registration);
+            
+            if(result.Succeeded)
+            {
+                return Ok(result.Succeeded);
+            }
+            return Unauthorized();                                                                                                    
         }
     }
 }

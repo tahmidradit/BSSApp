@@ -1,4 +1,6 @@
-﻿using BSSApp.Repository;
+﻿using BSSApp.Data.Entity;
+using BSSApp.Repository;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,23 @@ namespace BSSApp.Service
 {
     public class AccountRepository : IAccountRepository
     {
-        public AccountRepository()
-        {
+        private readonly UserManager<ApplicationUser> userManager;
 
+        public AccountRepository(UserManager<ApplicationUser> userManager)
+        {
+            this.userManager = userManager;
+        }
+
+        public async Task<IdentityResult> RegisterAsync(Registration registration)
+        {
+            var user = new ApplicationUser()
+            {
+                FirstName = registration.FirstName,
+                LastName = registration.LastName,
+                Email = registration.Email,
+                UserName = registration.UserName
+            };
+            return await userManager.CreateAsync(user, registration.Password);
         }
     }
 }

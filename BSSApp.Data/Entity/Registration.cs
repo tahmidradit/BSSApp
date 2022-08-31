@@ -5,7 +5,13 @@ namespace BSSApp.Data.Entity
     public class Registration
     {
         [Required]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+        [Required]
+        public string UserName { get; set; }
 
         [Required, EmailAddress]
         public string Email { get; set; }
