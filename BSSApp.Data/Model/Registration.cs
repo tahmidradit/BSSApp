@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BSSApp.Data.Entity
+namespace BSSApp.Data.Model
 {
     public class Registration
     {
@@ -18,7 +18,7 @@ namespace BSSApp.Data.Entity
 
         [Required, Compare("ConfirmPassword")]
         public string Password { get; set; }
-        
+
         [Required]
         public string ConfirmPassword { get; set; }
     }

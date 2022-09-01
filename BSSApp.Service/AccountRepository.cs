@@ -1,4 +1,5 @@
 ﻿using BSSApp.Data.Entity;
+using BSSApp.Data.Model;
 using BSSApp.Repository;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -29,5 +30,7 @@ namespace BSSApp.Service
             };
             return await userManager.CreateAsync(user, registration.Password);
         }
+
+
     }
 }

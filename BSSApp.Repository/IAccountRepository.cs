@@ -1,4 +1,4 @@
-﻿using BSSApp.Data.Entity;
+﻿using BSSApp.Data.Model;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

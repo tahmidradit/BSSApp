@@ -1,4 +1,4 @@
-﻿using BSSApp.Data.Entity;
+﻿using BSSApp.Data.Model;
 using BSSApp.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
