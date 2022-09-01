@@ -1,6 +1,6 @@
 ﻿using BSSApp.Data.Entity;
 using BSSApp.Data.Model;
-using BSSApp.Repository;
+using BSSApp.Repository.Account;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BSSApp.Service
+namespace BSSApp.Service.Account
 {
     public class AccountRepository : IAccountRepository
     {

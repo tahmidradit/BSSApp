@@ -1,8 +1,8 @@
 using BSSApp.Data;
 using BSSApp.Data.Entity;
-using BSSApp.Repository;
+using BSSApp.Repository.Account;
 using BSSApp.Repository.Data;
-using BSSApp.Service;
+using BSSApp.Service.Account;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

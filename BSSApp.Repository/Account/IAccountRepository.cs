@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BSSApp.Repository
+namespace BSSApp.Repository.Account
 {
     public interface IAccountRepository
     {
