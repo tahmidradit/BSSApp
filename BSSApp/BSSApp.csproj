@@ -21,8 +21,4 @@
     <ProjectReference Include="..\BSSApp.Service\BSSApp.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
-
 </Project>
