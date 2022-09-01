@@ -27,5 +27,36 @@ namespace BSSApp.Controllers
             }
             return Unauthorized();                                                                                                    
         }
+
+        //[HttpPost("login")]
+        //public async Task<IActionResult> Login([FromBody] Login login)
+        //{
+        //    var result = await accountRepository.LoginAsync(login);
+
+        //    if(string.IsNullOrEmpty(result))
+        //    {
+        //        return Unauthorized();
+        //    }
+
+        //    return Ok(result);
+        //}
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] Login login)
+        {
+            var result = await accountRepository.LoginAsync(login);
+
+            if (result.Succeeded)
+            {
+                return Ok(result.Succeeded);
+            }
+
+            //if (string.IsNullOrEmpty(result.Succeeded))
+            //{
+            //    return Unauthorized();
+            //}
+
+            return Ok(result);
+        }
     }
 }

@@ -10,7 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var cors = "cors";
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -35,6 +35,7 @@ builder.Services.AddAuthentication(option => {
 builder.Services.AddDbContext<BSSDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<BSSDbContext>().AddDefaultTokenProviders();
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
+builder.Services.AddCors(options => options.AddPolicy(cors, builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,6 +50,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseAuthentication();
+
+app.UseCors(cors);
 
 app.MapControllers();
 

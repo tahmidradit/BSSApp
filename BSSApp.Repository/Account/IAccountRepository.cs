@@ -11,5 +11,6 @@ namespace BSSApp.Repository.Account
     public interface IAccountRepository
     {
         Task<IdentityResult> RegisterAsync(Registration registration);
+        Task<SignInResult> LoginAsync(Login login);
     }
 }
