@@ -19,7 +19,10 @@ import { HomeComponent } from './component/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]

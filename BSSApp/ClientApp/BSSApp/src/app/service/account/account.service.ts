@@ -6,11 +6,11 @@ import { Injectable } from '@angular/core';
 })
 export class AccountService {
 
-  readonly baseUrl = 'https://localhost:44302/api/account';
+  readonly baseUrl = 'https://localhost:44302/api/account/';
 
   constructor(private httpClient: HttpClient) { }
 
   register(data: any) {
-    return this.httpClient.post(this.baseUrl, data);
+    return this.httpClient.post('https://localhost:44302/api/account/Registration', data);
   }
 }
