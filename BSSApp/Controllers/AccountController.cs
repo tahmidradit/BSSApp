@@ -1,6 +1,10 @@
-﻿using BSSApp.Data.Model;
+﻿using BSSApp.Data.Entity;
+using BSSApp.Data.Model;
 using BSSApp.Repository.Account;
+using BSSApp.Repository.Data;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BSSApp.Controllers
@@ -9,23 +13,40 @@ namespace BSSApp.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
+        private readonly BSSDbContext context;
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly IAccountRepository accountRepository;
 
-        public AccountController(IAccountRepository accountRepository)
+        public AccountController(BSSDbContext context, UserManager<ApplicationUser> userManager, IAccountRepository accountRepository)
         {
+            this.context = context;
+            this.userManager = userManager;
             this.accountRepository = accountRepository;
         }
 
-        [HttpPost("registration")]
-        public async Task<IActionResult> Registration([FromBody] Registration registration)
+        [HttpPost]
+        [Route("registration")]
+        public async Task<IActionResult> Registration([FromBody]Registration registration)
         {
-            var result = await accountRepository.RegisterAsync(registration);
-            
-            if(result.Succeeded)
+            var user = new ApplicationUser()
             {
-                return Ok(result.Succeeded);
-            }
-            return Unauthorized();                                                                                                    
+                FirstName = registration.FirstName,
+                LastName = registration.LastName,
+                Email = registration.Email,
+                UserName = registration.UserName
+            };
+            await userManager.CreateAsync(user, registration.Password);
+            
+
+            //var result = await accountRepository.RegisterAsync(registration);
+
+            //if (result.Succeeded)
+            //{
+            //    return Ok(result.Succeeded);
+            //}
+            //return Unauthorized();
+
+            return Ok();
         }
 
         //[HttpPost("login")]

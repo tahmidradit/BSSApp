@@ -13,13 +13,11 @@ namespace BSSApp.Data.Model
         [Required]
         public string UserName { get; set; }
 
-        [Required, EmailAddress]
+        [Required]
         public string Email { get; set; }
 
-        [Required, Compare("ConfirmPassword")]
-        public string Password { get; set; }
-
         [Required]
+        public string Password { get; set; }
         public string ConfirmPassword { get; set; }
     }
 }

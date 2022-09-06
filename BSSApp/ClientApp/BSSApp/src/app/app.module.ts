@@ -1,30 +1,24 @@
-import { AccountService } from './service/account/account.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {  HttpClientModule  } from '@angular/common/http'; 
+import { BookService } from './services/book/book.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AccountComponent } from './component/account/account.component';
-import { HomeComponent } from './component/home/home.component';
-
-
+import { RegService } from './reg.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 @NgModule({
   declarations: [
-    AppComponent,
-    AccountComponent,
-    HomeComponent,
-    
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    ReactiveFormsModule
   ],
-  providers: [AccountService],
+  providers: [RegService, BookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

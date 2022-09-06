@@ -4,38 +4,44 @@ using BSSApp.Repository.Account;
 using BSSApp.Repository.Data;
 using BSSApp.Service.Account;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-var cors = "cors";
+
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAuthentication(option => {
-    option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(option =>
-{
-    option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["JWT:ValidAudience"],
-        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
-    };
-});
+//builder.Services.AddAuthentication(option => {
+//    option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//    option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+//}).AddJwtBearer(option =>
+//{
+//    option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+//    {
+//        ValidateIssuer = true,
+//        ValidateAudience = true,
+//        ValidAudience = builder.Configuration["JWT:ValidAudience"],
+//        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
+//    };
+//});
+//builder.Services.AddCors(options => options.AddPolicy(name: "corsPolicy", builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 builder.Services.AddDbContext<BSSDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<BSSDbContext>().AddDefaultTokenProviders();
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
-builder.Services.AddCors(options => options.AddPolicy(cors, builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+builder.Services.AddCors(options => 
+        options.AddPolicy(name: "BSSApp", policy => { 
+        policy.WithOrigins("*").AllowAnyMethod().AllowAnyHeader(); 
+    }));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -51,7 +57,7 @@ app.UseAuthorization();
 
 app.UseAuthentication();
 
-app.UseCors(cors);
+app.UseCors("BSSApp");
 
 app.MapControllers();
 
