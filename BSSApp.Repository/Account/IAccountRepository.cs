@@ -1,5 +1,6 @@
 ﻿using BSSApp.Data.Model;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BSSApp.Repository.Account
 {
     public interface IAccountRepository
     {
-        Task<IdentityResult> RegisterAsync(Registration registration);
-        Task<SignInResult> LoginAsync(Login login);
+        Task<Object> RegisterAsync(Registration registration);
+        //Task<SignInResult> LoginAsync(Login login);
     }
 }

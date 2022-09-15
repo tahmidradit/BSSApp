@@ -28,15 +28,15 @@ namespace BSSApp.Controllers
         [Route("registration")]
         public async Task<IActionResult> Registration([FromBody]Registration registration)
         {
-            var user = new ApplicationUser()
-            {
-                FirstName = registration.FirstName,
-                LastName = registration.LastName,
-                Email = registration.Email,
-                UserName = registration.UserName
-            };
-            await userManager.CreateAsync(user, registration.Password);
-            
+            //var user = new ApplicationUser()
+            //{
+            //    FirstName = registration.FirstName,
+            //    LastName = registration.LastName,
+            //    Email = registration.Email,
+            //    UserName = registration.UserName
+            //};
+            //await userManager.CreateAsync(user, registration.Password);
+
 
             //var result = await accountRepository.RegisterAsync(registration);
 
@@ -45,7 +45,7 @@ namespace BSSApp.Controllers
             //    return Ok(result.Succeeded);
             //}
             //return Unauthorized();
-
+            await accountRepository.RegisterAsync(registration);
             return Ok();
         }
 
@@ -62,22 +62,22 @@ namespace BSSApp.Controllers
         //    return Ok(result);
         //}
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] Login login)
-        {
-            var result = await accountRepository.LoginAsync(login);
+        //[HttpPost("login")]
+        //public async Task<IActionResult> Login([FromBody] Login login)
+        //{
+        //    var result = await accountRepository.LoginAsync(login);
 
-            if (result.Succeeded)
-            {
-                return Ok(result.Succeeded);
-            }
+        //    if (result.Succeeded)
+        //    {
+        //        return Ok(result.Succeeded);
+        //    }
 
-            //if (string.IsNullOrEmpty(result.Succeeded))
-            //{
-            //    return Unauthorized();
-            //}
+        //    //if (string.IsNullOrEmpty(result.Succeeded))
+        //    //{
+        //    //    return Unauthorized();
+        //    //}
 
-            return Ok(result);
-        }
+        //    return Ok(result);
+        //}
     }
 }

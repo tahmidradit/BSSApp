@@ -2,6 +2,7 @@
 using BSSApp.Data.Model;
 using BSSApp.Repository.Account;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -16,7 +17,7 @@ using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredCla
 
 namespace BSSApp.Service.Account
 {
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : ControllerBase, IAccountRepository
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
@@ -29,7 +30,7 @@ namespace BSSApp.Service.Account
             this.configuration = configuration;
         }
 
-        public async Task<IdentityResult> RegisterAsync(Registration registration)
+        public async Task<Object> RegisterAsync(Registration registration)
         {
             var user = new ApplicationUser()
             {
@@ -38,40 +39,41 @@ namespace BSSApp.Service.Account
                 Email = registration.Email,
                 UserName = registration.UserName
             };
-            return await userManager.CreateAsync(user, registration.Password);
+            await userManager.CreateAsync(user, registration.Password);
+            return registration; 
         }
 
-        public async Task<SignInResult> LoginAsync(Login login)
-        {
-            //var result = await signInManager.PasswordSignInAsync(login.Email, login.Password, false, false);
-             return await signInManager.PasswordSignInAsync(login.Email, login.Password, false, false);
+        //public async Task<SignInResult> LoginAsync(Login login)
+        //{
+        //    //var result = await signInManager.PasswordSignInAsync(login.Email, login.Password, false, false);
+        //     return await signInManager.PasswordSignInAsync(login.Email, login.Password, false, false);
 
-            //if (!result.Succeeded)
-            //{
-            //    return null;
-            //}
+        //    //if (!result.Succeeded)
+        //    //{
+        //    //    return null;
+        //    //}
 
-            //var claims = new List<Claim>
-            //{
-            //    new Claim(ClaimTypes.Name, login.Email),
-            //    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            //};
+        //    //var claims = new List<Claim>
+        //    //{
+        //    //    new Claim(ClaimTypes.Name, login.Email),
+        //    //    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        //    //};
 
-            //var loginKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["JWT:Secret"]));
+        //    //var loginKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuration["JWT:Secret"]));
 
-            //var jwtAuthenticationToken = new JwtSecurityToken(
-            //    issuer: configuration["JWT:ValidIssuer"],
-            //    audience: configuration["JWT:ValidAudience"],
-            //    expires: DateTime.Now.AddDays(1),
-            //    claims: claims,
-            //    signingCredentials: new SigningCredentials(loginKey, SecurityAlgorithms.HmacSha256Signature)
-            //    );
+        //    //var jwtAuthenticationToken = new JwtSecurityToken(
+        //    //    issuer: configuration["JWT:ValidIssuer"],
+        //    //    audience: configuration["JWT:ValidAudience"],
+        //    //    expires: DateTime.Now.AddDays(1),
+        //    //    claims: claims,
+        //    //    signingCredentials: new SigningCredentials(loginKey, SecurityAlgorithms.HmacSha256Signature)
+        //    //    );
 
-            //return new JwtSecurityTokenHandler().WriteToken(jwtAuthenticationToken);
+        //    //return new JwtSecurityTokenHandler().WriteToken(jwtAuthenticationToken);
 
-            //return result;
+        //    //return result;
 
             
-        }
+        //}
     }
 }
