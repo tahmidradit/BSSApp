@@ -30,7 +30,7 @@ namespace BSSApp.Service.Account
             this.configuration = configuration;
         }
 
-        public async Task<Object> RegisterAsync(Registration registration)
+        public async Task<IdentityResult> RegisterAsync(Registration registration)
         {
             var user = new ApplicationUser()
             {
@@ -39,8 +39,8 @@ namespace BSSApp.Service.Account
                 Email = registration.Email,
                 UserName = registration.UserName
             };
-            await userManager.CreateAsync(user, registration.Password);
-            return registration; 
+            
+            return await userManager.CreateAsync(user, registration.Password);
         }
 
         //public async Task<SignInResult> LoginAsync(Login login)

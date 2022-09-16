@@ -17,7 +17,8 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.regService.register().subscribe();
-    this.isRegisteredSuccessfully = true;
+    setTimeout(() => {
+      this.isRegisteredSuccessfully = true;
+    }, 1000)
   }
-
 }

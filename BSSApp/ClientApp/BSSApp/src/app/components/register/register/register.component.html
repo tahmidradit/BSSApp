@@ -1,5 +1,6 @@
 <h1 align="center" class="mt-5">User Registration</h1>
-<div class="row" style="margin-top: 10%; background-color:cadetblue;">
+<div class="alert alert-success text-center col-2 float-end" role="alert" style="font-weight: bold; margin-right: 10px; border-radius: 0px;" *ngIf="isRegisteredSuccessfully==true"><i class="fa-solid fa-circle-check"></i> &nbsp; USER REGISTERED SUCCESSFULLY</div> <br> <br>
+<div class="row div-center">
     <div class="" style="height: 365px; width: 340px; background-image: url('assets/registration.jpg'); background-size: cover; background-repeat: no-repeat;"></div>
     <div class="col-6">
         <form [formGroup]="regService.formData" (submit)="register()">
@@ -7,7 +8,7 @@
                 <div class="">
                     <label>User Name</label>
                 </div>
-                <div class="col-4">
+                <div class="col-5">
                     <input type="text" class="form-control" id="UserName" name="UserName"  formControlName="UserName" />
                 </div>
             </div>
@@ -15,7 +16,7 @@
                 <div class="">
                     <label>First Name</label>
                 </div>
-                <div class="col-4">
+                <div class="col-5">
                     <input type="text" class="form-control" id="FirstName" name="FirstName"  formControlName="FirstName"  />
                 </div>
             </div>
@@ -23,7 +24,7 @@
                 <div class="">
                     <label>Last Name</label>
                 </div>
-                <div class="col-4">
+                <div class="col-5">
                     <input type="text" class="form-control" id="LastName" name="LastName"  formControlName="LastName"  />
                 </div>
             </div>
@@ -31,7 +32,7 @@
                 <div class="">
                     <label>Email</label>
                 </div>
-                <div class="col-4">
+                <div class="col-5">
                     <input type="text" class="form-control" id="Email" name="Email"  formControlName="Email" />
                 </div>
             </div>
@@ -39,16 +40,16 @@
                 <div class="">
                     <label>Password</label>
                 </div>
-                <div class="col-4">
+                <div class="col-5">
                     <input type="password" class="form-control" id="Password" name="Password"  formControlName="Password" />
                 </div>
             </div>
-            <div class="col-4">
-                <button type="submit" [disabled]="!regService.formData.valid"  class="btn btn-primary text-white mt-2 form-control">Register</button>
+            <div class="col-5">
+                <button type="submit"  class="btn btn-primary text-white mt-2 form-control">Register</button>
             </div>   
         </form>
-    </div>
-    <div class="alert alert-success col-6 mt-2 text-center" role="alert" *ngIf="isRegisteredSuccessfully==false">USER REGISTERED SUCCESSFULLY</div>
+    </div>     
 </div>
+
 
 
