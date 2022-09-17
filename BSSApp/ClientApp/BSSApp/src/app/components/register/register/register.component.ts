@@ -16,9 +16,18 @@ export class RegisterComponent implements OnInit {
   isRegisteredSuccessfully: boolean = false;
 
   register() {
-    this.regService.register().subscribe();
-    setTimeout(() => {
-      this.isRegisteredSuccessfully = true;
-    }, 1000)
+    this.isRegisteredSuccessfully = true;
+    this.regService.register().subscribe(res => {
+      
+      var categoryAddingSuccess = document.getElementById('categoryAdd-toast-success');
+      if(categoryAddingSuccess) {
+        categoryAddingSuccess.style.display = "block";
+      }
+      setTimeout(() => {
+        if(categoryAddingSuccess) {
+          categoryAddingSuccess.style.display = "none";
+        }
+      }, 4000);
+    });
   }
 }
