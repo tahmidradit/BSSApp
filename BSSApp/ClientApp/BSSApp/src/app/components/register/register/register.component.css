@@ -7,23 +7,23 @@
     padding-left: 25%;
 }
 
-#categoryAdd-toast-success {
+#user-registered-success {
     display: none;
 }
 
-#categoryAdd-toast-success {
+#user-registered-success {
     
-    animation-name: fadeInAndOut;
+    animation-name: fade;
     animation-duration: 4s;
 }
 
-@-webkit-keyframes fadeInAndOut {
+@-webkit-keyframes fade {
     0% {opacity: 0;}
     50% {opacity: 1;}
     100% {opacity: 0;}
 }
 
-@keyframes fadeInAndOut {
+@keyframes fade {
     0% {opacity: 0;}
     50% {opacity: 1;}
     100% {opacity: 0;}

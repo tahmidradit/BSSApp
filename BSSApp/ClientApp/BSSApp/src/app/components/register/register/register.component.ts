@@ -19,13 +19,13 @@ export class RegisterComponent implements OnInit {
     this.isRegisteredSuccessfully = true;
     this.regService.register().subscribe(res => {
       
-      var categoryAddingSuccess = document.getElementById('categoryAdd-toast-success');
-      if(categoryAddingSuccess) {
-        categoryAddingSuccess.style.display = "block";
+      var userRegisteredSuccessAlert = document.getElementById('user-registered-success');
+      if(userRegisteredSuccessAlert) {
+        userRegisteredSuccessAlert.style.display = "block";
       }
       setTimeout(() => {
-        if(categoryAddingSuccess) {
-          categoryAddingSuccess.style.display = "none";
+        if(userRegisteredSuccessAlert) {
+          userRegisteredSuccessAlert.style.display = "none";
         }
       }, 4000);
     });
