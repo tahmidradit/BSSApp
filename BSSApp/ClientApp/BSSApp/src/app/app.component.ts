@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RegService } from './services/register/reg.service';
 
 @Component({
   selector: 'app-root',

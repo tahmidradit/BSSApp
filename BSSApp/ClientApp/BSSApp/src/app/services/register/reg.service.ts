@@ -9,13 +9,14 @@ export class RegService {
 
   readonly baseUrl = 'https://localhost:7008/api';
 
-  constructor(private httpClient: HttpClient, public formBuilder: FormBuilder) { }
+  constructor(private httpClient: HttpClient, private formBuilder: FormBuilder) { }
 
-  public formData = this.formBuilder.group({
-    UserName: ['', Validators.required],
+    
+    formData = this.formBuilder.group({
+    UserName: ['', [Validators.required, Validators.minLength(4)]],
     FirstName: ['', Validators.required],
     LastName: ['', Validators.required],
-    Email: ['', Validators.required],
+    Email: ['', Validators.email],
     Password: ['', Validators.required]
   });
   

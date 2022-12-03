@@ -6,9 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegService } from './services/register/reg.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './components/register/register/register.component';
-import { LoginComponent } from './components/login/login/login.component';
-import { HomeComponent } from './components/home/home/home.component'
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component'
 @NgModule({
   declarations: [
     AppComponent,
